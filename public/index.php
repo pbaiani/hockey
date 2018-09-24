@@ -1,5 +1,5 @@
 <?php
-
+print 'hello';
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
