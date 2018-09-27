@@ -11,6 +11,28 @@
 |
 */
 
+
+Route::view('/', 'welcome');
+Route::view('/roster', 'welcome');
+Route::view('/roster/{id}', 'welcome');
+Route::view('/schedule', 'welcome');
+
+/*
+
 Route::get('/', function () {
-    return view('welcome');
+   
+    return view('welcome'); 
 });
+
+
+Route::get('/roster', function () {
+   
+    return view('welcome'); 
+});
+
+Route::get('/schedule', function () {
+   
+    return view('welcome'); 
+});
+
+*/
