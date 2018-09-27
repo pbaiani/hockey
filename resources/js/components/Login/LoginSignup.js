@@ -5,7 +5,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Login from './Login';
+
+
+
 
 function TabContainer(props) {
     return (
@@ -19,23 +22,15 @@ TabContainer.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-        backgroundColor: "#23DS12",
-        
-    },
-});
-
 
 class LoginSignup extends Component {
     constructor() {
         super();
             this.state = {
                 value: 0,
-
         };
+
+  
 
         // boilerplate function assignments
         this.handleChange = this.handleChange.bind(this);
@@ -49,12 +44,13 @@ class LoginSignup extends Component {
 
     render() {
         const { value } = this.state;
-
-        alert(styles);
+   
           return (
             
-            <div className={styles.root}>
-                <AppBar position="static">
+            <div>
+                <AppBar 
+                 position="static"
+                >
                     <Tabs value={value} onChange={this.handleChange}>
                         <Tab label="Log In" />
                         <Tab label="Sign Up" />
@@ -62,7 +58,7 @@ class LoginSignup extends Component {
                 </AppBar>
                 {value === 0 && 
                      <TabContainer>
-                         Log in 
+                        <Login />
                     </TabContainer>}
                 {value === 1 &&
                      <TabContainer>

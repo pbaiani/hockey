@@ -13,9 +13,12 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Drawer from '@material-ui/core/Drawer';
 import Menu from '@material-ui/core/Menu';
-import grey from '@material-ui/core/colors/grey';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+
+
 import LoginSignup from './Login/LoginSignup';
+import '../../sass/main.scss';
+
 
 
 const styles = {
@@ -38,14 +41,6 @@ const styles = {
 };
 
 
-const theme = createMuiTheme({
-    palette: {
-        primary: { main: '#000000'}, // Purple and green play nicely together.
-        secondary: { main: '#CCCCCC' }, // This is just green.A700 as hex.
-    },
-});
-
-
 class MenuAppBar extends React.Component {
     constructor() {
         super();
@@ -61,18 +56,18 @@ class MenuAppBar extends React.Component {
         this.state = {
             auth: true,
             anchorEl: null,
-            open:false
-          };
+            open: false
+        };
 
     }
 
 
     toggleDrawer(side, open) {
-          this.setState({
+        this.setState({
             [side]: open,
         });
     };
-    
+
 
     handleChange(event) {
 
@@ -80,20 +75,17 @@ class MenuAppBar extends React.Component {
     };
 
     openLoginMenu(event) {
-     
+
         this.setState({
             open: true,
-         });
-   };
+        });
+    };
 
-    closeLoginMenu(event)
-        {
-               this.setState({
-               open: false,
-
-            })
-
-        }
+    closeLoginMenu(event) {
+        this.setState({
+            open: false,
+        })
+    }
 
     handleClose(event) {
         this.setState({ anchorEl: null });
@@ -105,12 +97,9 @@ class MenuAppBar extends React.Component {
         const open = Boolean(anchorEl);
 
         return (
-            <MuiThemeProvider theme={theme}>
-                <div className={classes.root}
-             
-                
-                >
-                    <FormGroup style={{display:'none'}}>
+            <div>
+                <div className={classes.root}>
+                    <FormGroup style={{ display: 'none' }}>
                         <FormControlLabel
                             control={
                                 <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
@@ -120,22 +109,27 @@ class MenuAppBar extends React.Component {
                     </FormGroup>
                     <AppBar position="static" className="{this.appBarTheme.pallette}">
                         <Toolbar>
+
                             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                                <MenuIcon />
                             </IconButton>
+
                             <Typography variant="title" color="inherit" className={classes.grow}>
-                               ICE-X
+                                ICE-X
                            </Typography>
                             {auth && (
                                 <div>
-                                    <IconButton
-                                        aria-owns={open ? 'menu-appbar' : null}
-                                        aria-haspopup="true"
-                                        onClick={this.openLoginMenu}
-                                        color="inherit"
-                                    >
-                                        <AccountCircle />
-                                    </IconButton>
+                                    <Tooltip title="Log In">
+                                        <IconButton
+                                            aria-owns={open ? 'menu-appbar' : null}
+                                            aria-haspopup="true"
+                                            onClick={this.openLoginMenu}
+                                            color="inherit"
+                                        > <AccountCircle />
+
+                                        </IconButton>
+                                    </Tooltip>
+
+
                                     <Menu
                                         id="menu-appbar"
                                         anchorEl={anchorEl}
@@ -150,6 +144,7 @@ class MenuAppBar extends React.Component {
                                         open={open}
                                         onClose={this.handleClose}
                                     >
+
                                         <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                                         <MenuItem onClick={this.handleClose}>My account</MenuItem>
                                     </Menu>
@@ -158,8 +153,8 @@ class MenuAppBar extends React.Component {
                         </Toolbar>
                     </AppBar>
                 </div>
-                <Drawer 
-                id="logindrawer"
+                <Drawer
+                    id="logindrawer"
                     anchor="right"
                     open={this.state.open}
                     onClose={this.closeLoginMenu}
@@ -167,16 +162,16 @@ class MenuAppBar extends React.Component {
                     <div
                         tabIndex={0}
                         role="button"
-                        //onClick={this.closeLoginMenu}
-                       // onKeyDown={this.closeLoginMenu}
-                    
-                    >
-                      <LoginSignup />
+                    //onClick={this.closeLoginMenu}
+                    // onKeyDown={this.closeLoginMenu}
 
-                       
+                    >
+                        <LoginSignup />
+
+
                     </div>
                 </Drawer>
-            </MuiThemeProvider>
+            </div>
         );
     }
 }
