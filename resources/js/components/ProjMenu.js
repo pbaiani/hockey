@@ -159,17 +159,10 @@ class MenuAppBar extends React.Component {
                     open={this.state.open}
                     onClose={this.closeLoginMenu}
                 >
-                    <div
-                        tabIndex={0}
-                        role="button"
-                    //onClick={this.closeLoginMenu}
-                    // onKeyDown={this.closeLoginMenu}
-
-                    >
-                        <LoginSignup />
+                    <LoginSignup />
 
 
-                    </div>
+                   
                 </Drawer>
             </div>
         );

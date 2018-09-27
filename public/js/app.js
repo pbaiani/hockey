@@ -66677,17 +66677,7 @@ var MenuAppBar = function (_React$Component) {
                         open: this.state.open,
                         onClose: this.closeLoginMenu
                     },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        {
-                            tabIndex: 0,
-                            role: 'button'
-                            //onClick={this.closeLoginMenu}
-                            // onKeyDown={this.closeLoginMenu}
-
-                        },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__Login_LoginSignup__["a" /* default */], null)
-                    )
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_16__Login_LoginSignup__["a" /* default */], null)
                 )
             );
         }
@@ -81902,8 +81892,9 @@ var styles = function styles(theme) {
         },
 
         root: {
-            display: 'flex',
+            //display: 'flex',
             // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+            // display:'flex',
             borderRadius: 3,
             border: 0,
             // color: 'white',
@@ -81914,6 +81905,11 @@ var styles = function styles(theme) {
         label: {
             textTransform: 'capitalize'
 
+        },
+
+        textFieldContainers: {
+            width: '100%',
+            display: 'block'
         },
 
         dense: {
@@ -81960,25 +81956,43 @@ var Login = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_1__material_ui_core_Paper___default.a,
                     { className: classes.root, elevation: 5 },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__material_ui_core_TextField___default.a, {
-                        id: 'outlined-email-input',
-                        label: 'Email',
-                        type: 'email',
-                        name: 'email',
-                        className: classes.textField,
-                        autoComplete: 'email',
-                        margin: 'normal',
-                        variant: 'outlined'
-                    }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__material_ui_core_TextField___default.a, {
-                        id: 'outlined-password-input',
-                        label: 'Password',
-                        type: 'password',
-                        className: classes.textField,
-                        autoComplete: 'current-password',
-                        margin: 'normal',
-                        variant: 'outlined'
-                    })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: classes.textFieldContainers },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__material_ui_core_TextField___default.a, {
+                            id: 'outlined-email-input',
+                            label: 'Email',
+                            type: 'email',
+                            name: 'email',
+                            className: classes.textField,
+                            autoComplete: 'email',
+                            margin: 'normal',
+                            variant: 'outlined'
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: classes.textFieldContainers },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__material_ui_core_TextField___default.a, {
+                            id: 'outlined-password-input',
+                            label: 'Password',
+                            type: 'password',
+                            className: classes.textField,
+                            autoComplete: 'current-password',
+                            margin: 'normal',
+                            variant: 'outlined'
+                        })
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: classes.textFieldContainers },
+                    'fadsfadsf'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: classes.textFieldContainers },
+                    'fadsfadsf'
                 )
             );
         }
