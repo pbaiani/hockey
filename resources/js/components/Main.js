@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom'
 import Header from './Header';
 import Body from './Body';
 
-
 render((
     <BrowserRouter>
     <div>
