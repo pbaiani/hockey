@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Login from './Login';
+import SignUp from './SignUp';
 
 
 
@@ -62,7 +63,7 @@ class LoginSignup extends Component {
                     </TabContainer>}
                 {value === 1 &&
                      <TabContainer>
-                         Sign Up
+                      <SignUp />
                      </TabContainer>}
          
             </div>

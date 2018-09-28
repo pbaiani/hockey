@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
-import { green700 } from 'material-ui/styles/colors';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/icons/Send';
+
 
 
 const styles = theme => ({
@@ -17,18 +16,23 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
     },
-
+    button: {
+        margin: theme.spacing.unit,
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
+    },
+    iconSmall: {
+        fontSize: 20,
+    },
 
     root: {
-        //display: 'flex',
-        // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-       // display:'flex',
+
         borderRadius: 3,
         border: 0,
-        // color: 'white',
-        // height: 48,
+     
         padding: '0 30px',
-        //  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      
     },
     label: {
         textTransform: 'capitalize',
@@ -49,6 +53,7 @@ const styles = theme => ({
         width: 200,
     },
 });
+
 
 
 
@@ -80,8 +85,7 @@ class Login extends Component {
         const { classes } = this.props;
         return (
             <div>
-                <Paper className={classes.root} elevation={5}>
-                    <div className={classes.textFieldContainers}>
+                              <div className={classes.textFieldContainers}>
                         <TextField
                             id="outlined-email-input"
                             label="Email"
@@ -104,11 +108,10 @@ class Login extends Component {
                             variant="outlined"
                         />
                     </div>
-                </Paper>
-
-                <div className={classes.textFieldContainers}>fadsfadsf</div>
-
-                <div className={classes.textFieldContainers}>fadsfadsf</div>         
+                <Button variant="contained" color="primary" className={classes.button}>
+                    Submit
+        <Icon className={classes.rightIcon}>send</Icon>
+                </Button>
             </div>
         );
 
