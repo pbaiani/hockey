@@ -34,8 +34,8 @@ class LoginSignup extends Component {
 
 
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             value: 0,
         };
@@ -49,12 +49,7 @@ class LoginSignup extends Component {
         this.setState({ value });
     }
 
-    closeDrawer(event)
-        {
-    
-        this.props.closeDrawer(MyActions.BUTTON_CLICKED, data);
-        }
-
+ 
     render() {
         const { value } = this.state;
 
@@ -75,7 +70,7 @@ class LoginSignup extends Component {
                     }}
                  >
                         <Cancel
-                            onClick={this.closeDrawer}
+                            onClick={this.props.closeDrawer}
                         
                         /> 
 
