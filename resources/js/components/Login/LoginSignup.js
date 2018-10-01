@@ -5,6 +5,11 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+
+import IconButton from '@material-ui/core/IconButton';
+import Cancel from '@material-ui/icons/Cancel';
+
+
 import Login from './Login';
 import SignUp from './SignUp';
 
@@ -24,53 +29,90 @@ TabContainer.propTypes = {
 };
 
 
+
 class LoginSignup extends Component {
+
+
+
     constructor() {
         super();
-            this.state = {
-                value: 0,
+        this.state = {
+            value: 0,
         };
+        
 
-  
-
-        // boilerplate function assignments
+         // boilerplate function assignments
         this.handleChange = this.handleChange.bind(this);
-   
+
     }
     handleChange(event, value) {
         this.setState({ value });
     }
 
-
+    closeDrawer(event)
+        {
+    
+        this.props.closeDrawer(MyActions.BUTTON_CLICKED, data);
+        }
 
     render() {
         const { value } = this.state;
-   
-          return (
-            
+
+        return (
+
             <div>
-                <AppBar 
-                 position="static"
+               <AppBar
+                    position="sticky"
                 >
-                    <Tabs value={value} onChange={this.handleChange}>
-                        <Tab label="Log In" />
-                        <Tab label="Sign Up" />
+
+                <div
+                style={{
+                    width:"100%",
+                    textAlign:"right",
+
+                
+                
+                    }}
+                 >
+                        <Cancel
+                            onClick={this.closeDrawer}
+                        
+                        /> 
+
+                </div>
+                      <Tabs
+                        value={value} onChange={this.handleChange}>
+                        <Tab
+                          label="Log In" />
+                        <Tab label="Sign Up"
+                        
+                        style={{
+                          
+
+                        }}
+                        
+                        />
                     </Tabs>
+                
+
+                
+
                 </AppBar>
-                {value === 0 && 
-                     <TabContainer>
+
+                {value === 0 &&
+                    <TabContainer>
                         <Login />
                     </TabContainer>}
                 {value === 1 &&
-                     <TabContainer>
-                      <SignUp />
-                     </TabContainer>}
-         
+                    <TabContainer>
+                        <SignUp />
+                    </TabContainer>}
+
             </div>
         );
 
 
     }
- }
+}
 
- export default LoginSignup;
+export default LoginSignup;

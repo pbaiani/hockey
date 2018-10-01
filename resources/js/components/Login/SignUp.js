@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { Values } from "redux-form-website-template";
-import store from "./store";
-import showResults from "./showResults";
-import SimpleForm from "./SimpleForm";
-
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Values } from 'redux-form-website-template';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import store from './store';
+import showResults from './showResults';
+import SignUpForm from './forms/SignUpForm';
 
 
 class SignUp extends Component
@@ -20,13 +21,16 @@ class SignUp extends Component
  render() 
  {
 return(
-<Provider store={store}>
-        <div style={{ padding: 15 }}>
-            <h2>Simple Form</h2>
-            <SimpleForm onSubmit={showResults} />
-            <Values form="simple" />
-        </div>
-    </Provider>
+< Provider store = { store } >
+         <MuiThemeProvider muiTheme={getMuiTheme()}>
+             <div style={{ padding: 0 }}>
+                 <h3>Sign Up</h3>
+                 <SignUpForm onSubmit={showResults} />
+                 <Values form="MaterialUiForm" />
+             </div>
+         </MuiThemeProvider>
+  </Provider >
+ 
 )
 }
 }

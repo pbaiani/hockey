@@ -47,12 +47,9 @@ class MenuAppBar extends React.Component {
         this.openLoginMenu = this.openLoginMenu.bind(this);
         this.toggleDrawer = this.toggleDrawer.bind(this);
         this.closeLoginMenu = this.closeLoginMenu.bind(this);
-
-
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-
+    
         this.state = {
             auth: true,
             anchorEl: null,
@@ -159,7 +156,7 @@ class MenuAppBar extends React.Component {
                     open={this.state.open}
                     onClose={this.closeLoginMenu}
                 >
-                    <LoginSignup />
+                    <LoginSignup closeDrawer={this.toggleDrawer}/>
 
 
                    
