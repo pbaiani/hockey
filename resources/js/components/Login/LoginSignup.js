@@ -69,10 +69,19 @@ class LoginSignup extends Component {
                 
                     }}
                  >
-                        <Cancel
-                            onClick={this.props.closeDrawer}
-                        
-                        /> 
+
+
+                                        <IconButton
+                                            onClick={this.props.closeDrawer}
+                                            color="inherit"
+                                        >  
+                                         <Cancel /> 
+
+                                        </IconButton>
+
+
+
+                      
 
                 </div>
                       <Tabs
