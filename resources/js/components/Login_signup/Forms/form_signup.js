@@ -6,8 +6,17 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+
+
+import Button from '@material-ui/core/Button';
+import SendIcon from '@material-ui/icons/Send';
+import ClearIcon from '@material-ui/icons/Clear';
+
 import asyncValidate from './asyncValidate';
 import validate from './validate';
+import submit from './submit';
+
+
 
 const renderTextField = (
     { input, label, meta: { touched, error }, ...custom },
@@ -51,10 +60,14 @@ const renderSelectField = (
         />
     );
 
-const MaterialUiForm = props => {
+const SignupForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
-        <form onSubmit={handleSubmit}>
+
+<div>
+
+
+            <form onSubmit={handleSubmit(submit)}>
             <div>
                 <Field
                     name="firstName"
@@ -68,13 +81,13 @@ const MaterialUiForm = props => {
             <div>
                 <Field name="email" component={renderTextField} label="Email" />
             </div>
-            <div>
+            <div style={{display:'none'}}>
                 <Field name="sex" component={renderRadioGroup}>
                     <RadioButton value="male" label="male" />
                     <RadioButton value="female" label="female" />
                 </Field>
             </div>
-            <div>
+            <div style={{display:'none'}}>
                 <Field
                     name="favoriteColor"
                     component={renderSelectField}
@@ -85,10 +98,10 @@ const MaterialUiForm = props => {
                     <MenuItem value="0000ff" primaryText="Blue" />
                 </Field>
             </div>
-            <div>
+            <div style={{display:'none'}}>
                 <Field name="employed" component={renderCheckbox} label="Employed" />
             </div>
-            <div>
+            <div style={{display:'none'}}>
                 <Field
                     name="notes"
                     component={renderTextField}
@@ -98,17 +111,45 @@ const MaterialUiForm = props => {
                 />
             </div>
             <div>
-                <button type="submit" disabled={pristine || submitting}>Submit</button>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
-        </button>
+               <Field type="password"  name="password" component={renderTextField} label="Password" />
+            </div>
+            <div>
+                <Field type='password' name="password2" component={renderTextField} label="Re-Type Password" />
+            </div>
+
+            <div style={{textAlign:'right'}}>
+                    <Button variant="contained"
+                     color="primary"
+                    type="submit"
+                    size="small"
+                    disabled={pristine || submitting}
+                    >
+                     Submit
+                     <SendIcon
+                     size="small"
+                     >send</SendIcon>
+                    </Button>&nbsp;&nbsp;&nbsp;&nbsp;
+              
+                <Button
+                 variant="contained" 
+                 type="button"
+                 size="small"
+                 color="secondary"
+                  disabled={pristine || submitting}
+                   onClick={reset}>
+                 Clear
+                 <ClearIcon
+                    size="small"
+                 >clear</ClearIcon>
+        </Button>
             </div>
         </form>
+   </div>
     );
 };
 
 export default reduxForm({
-    form: 'MaterialUiForm', // a unique identifier for this form
+    form: 'Signup', // a unique identifier for this form
     validate,
     asyncValidate,
-})(MaterialUiForm);
+})(SignupForm);

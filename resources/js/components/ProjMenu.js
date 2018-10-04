@@ -15,8 +15,8 @@ import Drawer from '@material-ui/core/Drawer';
 import Menu from '@material-ui/core/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import LoginSignup from './Login_signup/LoginSignup';
 
-import LoginSignup from './Login/LoginSignup';
 import '../../sass/main.scss';
 
 

@@ -39,9 +39,9 @@ class LoginSignup extends Component {
         this.state = {
             value: 0,
         };
-        
 
-         // boilerplate function assignments
+
+        // boilerplate function assignments
         this.handleChange = this.handleChange.bind(this);
 
     }
@@ -49,57 +49,57 @@ class LoginSignup extends Component {
         this.setState({ value });
     }
 
- 
+
     render() {
         const { value } = this.state;
 
         return (
 
             <div>
-               <AppBar
+                <AppBar
                     position="sticky"
                 >
 
-                <div
-                style={{
-                    width:"100%",
-                    textAlign:"right",
-
-                
-                
-                    }}
-                 >
-
-
-                                        <IconButton
-                                            onClick={this.props.closeDrawer}
-                                            color="inherit"
-                                        >  
-                                         <Cancel /> 
-
-                                        </IconButton>
-
-
-
-                      
-
-                </div>
-                      <Tabs
-                        value={value} onChange={this.handleChange}>
-                        <Tab
-                          label="Log In" />
-                        <Tab label="Sign Up"
-                        
+                    <div
                         style={{
-                          
+                            width: "100%",
+                            textAlign: "right",
+
+
 
                         }}
-                        
+                    >
+
+
+                        <IconButton
+                            onClick={this.props.closeDrawer}
+                            color="inherit"
+                        >
+                            <Cancel />
+
+                        </IconButton>
+
+
+
+
+
+                    </div>
+                    <Tabs
+                        value={value} onChange={this.handleChange}>
+                        <Tab
+                            label="Log In" />
+                        <Tab label="Sign Up"
+
+                            style={{
+
+
+                            }}
+
                         />
                     </Tabs>
-                
 
-                
+
+
 
                 </AppBar>
 
