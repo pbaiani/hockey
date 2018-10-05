@@ -41,6 +41,7 @@ function  submit(values, dispatch, props) {
         })
         .then(data => {
 
+            
             if (data.emailExists && data.emailExists == 1) {
                stopSubmit('Signup', {email: 'Email Exists!', _error: 'Email Exists!' });
 
