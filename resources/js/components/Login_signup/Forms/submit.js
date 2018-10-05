@@ -28,6 +28,7 @@ function  submit(values, dispatch, props) {
         },
                 body: JSON.stringify(newUser)
     })
+    
         .then(response => {
 
             // this piece of shit possibly only for checking http statuses?  
@@ -41,7 +42,7 @@ function  submit(values, dispatch, props) {
         })
         .then(data => {
 
-            
+
             if (data.emailExists && data.emailExists == 1) {
                stopSubmit('Signup', {email: 'Email Exists!', _error: 'Email Exists!' });
 
