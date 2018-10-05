@@ -14,7 +14,7 @@ function submit(values, dispatch,props) {
         
     }
 
-    alert(newUser);
+  
     fetch('api/users', {
         method: 'post',
         /* headers are important*/

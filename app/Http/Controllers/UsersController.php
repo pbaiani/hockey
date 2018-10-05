@@ -26,8 +26,14 @@ public function store(Request $request)
     }
 
 
+public function checkEmail(Request $request)
+{
+
+    $email = Users::whereEmail($email)->first();
 
 
+
+}
 
 
 }
