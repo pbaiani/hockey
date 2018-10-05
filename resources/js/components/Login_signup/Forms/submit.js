@@ -16,7 +16,10 @@ function  submit(values, dispatch, props) {
     }
    var emailExists = 0;
 
+
   return fetch('api/users', {
+
+
         method: 'post',
         /* headers are important*/
         headers: {
