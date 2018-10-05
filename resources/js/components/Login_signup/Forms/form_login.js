@@ -17,14 +17,13 @@ import validate from './validate';
 import submit from './submit';
 
 
-
 const renderTextField = (
-    { input, label, meta: { touched, error, submitError  }, ...custom },
+    { input, label, meta: { touched, error}, ...custom },
 ) => (
         <TextField
             hintText={label}
             floatingLabelText={label}
-            errorText={touched && error && submitError }
+            errorText={touched && error}
             {...input}
             {...custom}
         />

@@ -31741,6 +31741,7 @@ var sleep = function sleep(ms) {
     var errors = {};
 
     if (props.form == 'Login') {
+
         var requiredFields = ['email', 'password'];
 
         requiredFields.forEach(function (field) {
@@ -107667,13 +107668,12 @@ var renderTextField = function renderTextField(_ref) {
         _ref$meta = _ref.meta,
         touched = _ref$meta.touched,
         error = _ref$meta.error,
-        submitError = _ref$meta.submitError,
         custom = _objectWithoutProperties(_ref, ['input', 'label', 'meta']);
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TextField___default.a, _extends({
         hintText: label,
         floatingLabelText: label,
-        errorText: touched && error && submitError
+        errorText: touched && error
     }, input, custom));
 };
 

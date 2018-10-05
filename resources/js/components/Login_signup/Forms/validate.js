@@ -6,6 +6,7 @@ export default function (values, props) {
 
   if(props.form=='Login')
   {
+      
       const requiredFields = [
           'email',
           'password',

@@ -16,7 +16,6 @@ import validate from './validate';
 import submit from './submit';
 
 
-
 const renderTextField = (
     { input, label, meta: { touched, error }, ...custom },
 ) => (
