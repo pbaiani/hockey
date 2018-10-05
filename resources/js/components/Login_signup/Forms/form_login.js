@@ -19,12 +19,12 @@ import submit from './submit';
 
 
 const renderTextField = (
-    { input, label, meta: { touched, error }, ...custom },
+    { input, label, meta: { touched, error, submitError  }, ...custom },
 ) => (
         <TextField
             hintText={label}
             floatingLabelText={label}
-            errorText={touched && error}
+            errorText={touched && error && submitError }
             {...input}
             {...custom}
         />

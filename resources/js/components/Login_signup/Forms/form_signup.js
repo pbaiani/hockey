@@ -12,7 +12,6 @@ import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import ClearIcon from '@material-ui/icons/Clear';
 
-import asyncValidate from './asyncValidate';
 import validate from './validate';
 import submit from './submit';
 
@@ -151,5 +150,5 @@ const SignupForm = props => {
 export default reduxForm({
     form: 'Signup', // a unique identifier for this form
     validate,
-    asyncValidate,
+    submit,
 })(SignupForm);

@@ -11387,7 +11387,7 @@ exports.f = Object.getOwnPropertySymbols;
 /* unused harmony export startAsyncValidation */
 /* unused harmony export startSubmit */
 /* unused harmony export stopAsyncValidation */
-/* unused harmony export stopSubmit */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return stopSubmit; });
 /* unused harmony export submit */
 /* unused harmony export touch */
 /* unused harmony export unregisterField */
@@ -26647,7 +26647,7 @@ var SubmissionError = function (_ExtendableError) {
   }
 
   return SubmissionError;
-}(__WEBPACK_IMPORTED_MODULE_0_es6_error__["a" /* default */]);
+}(__WEBPACK_IMPORTED_MODULE_0_es6_error__["default"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (SubmissionError);
 
@@ -98611,6 +98611,7 @@ FormSection.contextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -98682,7 +98683,7 @@ var ExtendableError = function (_extendableBuiltin2) {
   return ExtendableError;
 }(_extendableBuiltin(Error));
 
-/* harmony default export */ __webpack_exports__["a"] = (ExtendableError);
+/* harmony default export */ __webpack_exports__["default"] = (ExtendableError);
 
 
 /***/ }),
@@ -107666,12 +107667,13 @@ var renderTextField = function renderTextField(_ref) {
         _ref$meta = _ref.meta,
         touched = _ref$meta.touched,
         error = _ref$meta.error,
+        submitError = _ref$meta.submitError,
         custom = _objectWithoutProperties(_ref, ['input', 'label', 'meta']);
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TextField___default.a, _extends({
         hintText: label,
         floatingLabelText: label,
-        errorText: touched && error
+        errorText: touched && error && submitError
     }, input, custom));
 };
 
@@ -115563,13 +115565,11 @@ var SignUp = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__material_ui_icons_Send___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__material_ui_icons_Send__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__material_ui_icons_Clear__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__material_ui_icons_Clear___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__material_ui_icons_Clear__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__asyncValidate__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__validate__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__submit__ = __webpack_require__(828);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__validate__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__submit__ = __webpack_require__(828);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 
 
 
@@ -115654,7 +115654,7 @@ var SignupForm = function SignupForm(props) {
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'form',
-            { onSubmit: handleSubmit(__WEBPACK_IMPORTED_MODULE_12__submit__["a" /* default */]) },
+            { onSubmit: handleSubmit(__WEBPACK_IMPORTED_MODULE_11__submit__["a" /* default */]) },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
@@ -115771,8 +115771,8 @@ var SignupForm = function SignupForm(props) {
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_redux_form__["c" /* reduxForm */])({
     form: 'Signup', // a unique identifier for this form
-    validate: __WEBPACK_IMPORTED_MODULE_11__validate__["a" /* default */],
-    asyncValidate: __WEBPACK_IMPORTED_MODULE_10__asyncValidate__["a" /* default */]
+    validate: __WEBPACK_IMPORTED_MODULE_10__validate__["a" /* default */],
+    submit: __WEBPACK_IMPORTED_MODULE_11__submit__["a" /* default */]
 })(SignupForm));
 
 /***/ }),
@@ -116585,17 +116585,17 @@ var Schedule = function Schedule() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError__ = __webpack_require__(829);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_form__ = __webpack_require__(148);
+// import { SubmissionError } from 'redux-form';
 
 
-var sleep = function sleep(ms) {
-    return new Promise(function (resolve) {
-        return setTimeout(resolve, ms);
-    });
-};
+
 
 function submit(values, dispatch, props) {
-    console.log("my object: %o", props);
+    // console.log("my object: %o", props);
+
 
     var newUser = {
         firstName: values.firstName,
@@ -116604,20 +116604,34 @@ function submit(values, dispatch, props) {
         password: values.password
 
     };
+    var emailExists = 0;
 
-    alert(newUser);
-    fetch('api/users', {
+    return fetch('api/users', {
         method: 'post',
         /* headers are important*/
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-
         body: JSON.stringify(newUser)
     }).then(function (response) {
+
+        // this piece of shit possibly only for checking http statuses?  
+        // would explain the time I've had finding the response
+
+        //    console.log("my Response object: %o", response);
+
+        //  console.log('trying to get email', response.email);
+
         return response.json();
     }).then(function (data) {
+
+        if (data.emailExists && data.emailExists == 1) {
+            Object(__WEBPACK_IMPORTED_MODULE_1_redux_form__["d" /* stopSubmit */])('Signup', { email: 'Email Exists!', _error: 'Email Exists!' });
+
+            //throw new Error('Email Exists');
+        }
+
         //update the state of products and currentProduct
         /*
          this.setState((prevState) => ({
@@ -116626,6 +116640,18 @@ function submit(values, dispatch, props) {
              
          }))
          */
+    }).catch(function (error) {
+        console.log(error);
+        /*   throw new SubmissionError({
+            email: 'Email Exists!',
+           _error: 'Login failed!',
+        
+                    })
+        */
+    }).then(function (success) {
+
+        // console.log('hi');
+
     });
 
     /*
@@ -116648,6 +116674,46 @@ function submit(values, dispatch, props) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (submit);
+
+/***/ }),
+/* 829 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _es6Error = __webpack_require__(594);
+
+var _es6Error2 = _interopRequireDefault(_es6Error);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubmissionError = function (_ExtendableError) {
+  _inherits(SubmissionError, _ExtendableError);
+
+  function SubmissionError(errors) {
+    _classCallCheck(this, SubmissionError);
+
+    var _this = _possibleConstructorReturn(this, (SubmissionError.__proto__ || Object.getPrototypeOf(SubmissionError)).call(this, 'Submit Validation Failed'));
+
+    _this.errors = errors;
+    return _this;
+  }
+
+  return SubmissionError;
+}(_es6Error2.default);
+
+exports.default = SubmissionError;
 
 /***/ })
 /******/ ]);
