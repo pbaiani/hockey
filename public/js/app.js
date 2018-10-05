@@ -11387,7 +11387,7 @@ exports.f = Object.getOwnPropertySymbols;
 /* unused harmony export startAsyncValidation */
 /* unused harmony export startSubmit */
 /* unused harmony export stopAsyncValidation */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return stopSubmit; });
+/* unused harmony export stopSubmit */
 /* unused harmony export submit */
 /* unused harmony export touch */
 /* unused harmony export unregisterField */
@@ -26647,7 +26647,7 @@ var SubmissionError = function (_ExtendableError) {
   }
 
   return SubmissionError;
-}(__WEBPACK_IMPORTED_MODULE_0_es6_error__["default"]);
+}(__WEBPACK_IMPORTED_MODULE_0_es6_error__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (SubmissionError);
 
@@ -98612,7 +98612,6 @@ FormSection.contextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -98684,7 +98683,7 @@ var ExtendableError = function (_extendableBuiltin2) {
   return ExtendableError;
 }(_extendableBuiltin(Error));
 
-/* harmony default export */ __webpack_exports__["default"] = (ExtendableError);
+/* harmony default export */ __webpack_exports__["a"] = (ExtendableError);
 
 
 /***/ }),
@@ -116585,11 +116584,9 @@ var Schedule = function Schedule() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError__ = __webpack_require__(829);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_redux_form_lib_SubmissionError__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_form__ = __webpack_require__(148);
-// import { SubmissionError } from 'redux-form';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux_form__ = __webpack_require__(148);
 
+//import SubmissionError from 'redux-form/lib/SubmissionError'
 
 
 
@@ -116606,8 +116603,7 @@ function submit(values, dispatch, props) {
     };
     var emailExists = 0;
 
-    return fetch('api/users', {
-
+    fetch('api/users', {
         method: 'post',
         /* headers are important*/
         headers: {
@@ -116628,7 +116624,16 @@ function submit(values, dispatch, props) {
     }).then(function (data) {
 
         if (data.emailExists && data.emailExists == 1) {
-            Object(__WEBPACK_IMPORTED_MODULE_1_redux_form__["d" /* stopSubmit */])('Signup', { email: 'Email Exists!', _error: 'Email Exists!' });
+            throw { email: 'Email already Exists' };
+            console.log('fired');
+
+            /*          
+                      throw new SubmissionError({
+                          email: 'This email is already registered'
+                      })
+            */
+            //stopSubmit('Signup', {email: 'Email Exists!', _error: 'Email Exists!' });
+
 
             //throw new Error('Email Exists');
         }
@@ -116675,46 +116680,6 @@ function submit(values, dispatch, props) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (submit);
-
-/***/ }),
-/* 829 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _es6Error = __webpack_require__(594);
-
-var _es6Error2 = _interopRequireDefault(_es6Error);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SubmissionError = function (_ExtendableError) {
-  _inherits(SubmissionError, _ExtendableError);
-
-  function SubmissionError(errors) {
-    _classCallCheck(this, SubmissionError);
-
-    var _this = _possibleConstructorReturn(this, (SubmissionError.__proto__ || Object.getPrototypeOf(SubmissionError)).call(this, 'Submit Validation Failed'));
-
-    _this.errors = errors;
-    return _this;
-  }
-
-  return SubmissionError;
-}(_es6Error2.default);
-
-exports.default = SubmissionError;
 
 /***/ })
 /******/ ]);

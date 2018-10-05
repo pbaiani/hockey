@@ -1,9 +1,9 @@
-// import { SubmissionError } from 'redux-form';
+ import { SubmissionError } from 'redux-form';
+//import SubmissionError from 'redux-form/lib/SubmissionError'
 
-import SubmissionError from 'redux-form/lib/SubmissionError'
 import { stopSubmit } from 'redux-form';
 
-function  submit(values, dispatch, props) {
+function submit(values, dispatch, props) {
     // console.log("my object: %o", props);
 
 
@@ -17,9 +17,7 @@ function  submit(values, dispatch, props) {
    var emailExists = 0;
 
 
-  return fetch('api/users', {
-
-
+fetch('api/users', {
         method: 'post',
         /* headers are important*/
         headers: {
@@ -28,7 +26,7 @@ function  submit(values, dispatch, props) {
         },
                 body: JSON.stringify(newUser)
     })
-    
+
         .then(response => {
 
             // this piece of shit possibly only for checking http statuses?  
@@ -42,9 +40,19 @@ function  submit(values, dispatch, props) {
         })
         .then(data => {
 
-
             if (data.emailExists && data.emailExists == 1) {
-               stopSubmit('Signup', {email: 'Email Exists!', _error: 'Email Exists!' });
+                throw { email: 'Email already Exists' };
+               console.log('fired');
+                
+
+
+      /*          
+                throw new SubmissionError({
+                    email: 'This email is already registered'
+                })
+
+*/
+               //stopSubmit('Signup', {email: 'Email Exists!', _error: 'Email Exists!' });
 
 
 
