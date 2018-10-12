@@ -15,7 +15,6 @@ import SignUp from './SignUp';
 
 
 
-
 function TabContainer(props) {
     return (
         <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -32,19 +31,43 @@ TabContainer.propTypes = {
 
 class LoginSignup extends Component {
 
-
-
     constructor(props) {
         super(props);
-        this.state = {
-            value: 0,
-        };
+        console.log('Login Signup:  ', this.props.getCurrentState());
 
 
+        this.state = { value: 0, //isLoggedIn: false, user: {} 
+                        };
+ 
         // boilerplate function assignments
         this.handleChange = this.handleChange.bind(this);
+        this.changeLoggedState = this.changeLoggedState.bind(this);
+        this.getCurrentState = this.getCurrentState.bind(this);
 
+    } // end of constructor
+
+
+   
+
+    changeLoggedState(event, value) {
+        this.setState({ isLoggedIn: value }, () => {
+            console.log('state of isLoggedIn:  ', this.getCurrentState());
+        }); 
+
+
+     //   this.setState({ isLoggedIn: value });
+     //   console.log('currentState:  ', this.getCurrentState());
     }
+
+
+    getCurrentState(value) {
+       //console.log('logged in?' , this.state.isLoggedIn);
+       return this.state.isLoggedIn;
+      
+    }
+
+
+
     handleChange(event, value) {
         this.setState({ value });
     }
@@ -53,6 +76,11 @@ class LoginSignup extends Component {
     render() {
         const { value } = this.state;
 
+
+       if(this.state.isLoggedIn)
+       {
+        alert(this.state.isLoggedIn);
+       }
         return (
 
             <div>
@@ -86,8 +114,7 @@ class LoginSignup extends Component {
                     </div>
                     <Tabs
                         value={value} onChange={this.handleChange}>
-                        <Tab
-                            label="Log In" />
+                        <Tab label="Log In" />
                         <Tab label="Sign Up"
 
                             style={{
@@ -105,11 +132,11 @@ class LoginSignup extends Component {
 
                 {value === 0 &&
                     <TabContainer>
-                        <Login />
+                    <Login changeLoggedState={this.props.changeLoggedState} getCurrentState={this.props.getCurrentState} />
                     </TabContainer>}
                 {value === 1 &&
                     <TabContainer>
-                        <SignUp />
+                    <SignUp changeLoggedState={this.props.changeLoggedState} getCurrentState={this.props.getCurrentState} />
                     </TabContainer>}
 
             </div>

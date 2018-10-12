@@ -58,13 +58,29 @@ const renderSelectField = (
         />
     );
 
+
+
+const ChildComponent = (props) => {
+    console.log('called from form_signup:', props.getCurrentState());
+
+  return (
+  <div>
+        <h1>Child Component</h1>
+    </div>
+    )
+
+  }
+
+
+ 
 const SignupForm = props => {
-    const { handleSubmit, pristine, reset, submitting } = props;
+
+   const { handleSubmit, pristine, reset, submitting} = props;
+
+   console.log('Form Signup:  ', props.getCurrentState());
+
     return (
-
-<div>
-
-
+ <div>
             <form onSubmit={handleSubmit(submit)}>
             <div>
                 <Field
@@ -146,8 +162,12 @@ const SignupForm = props => {
     );
 };
 
+
 export default reduxForm({
     form: 'Signup', // a unique identifier for this form
     validate,
     submit,
-})(SignupForm);
+  //  handleSubmit,
+  })(SignupForm);
+
+

@@ -44,12 +44,13 @@ const styles = {
 class MenuAppBar extends React.Component {
     constructor(props) {
         super(props);
+        console.log('Called from menus:  ', this.props.getCurrentState());
+
         this.openLoginMenu = this.openLoginMenu.bind(this);
         this.toggleDrawer = this.toggleDrawer.bind(this);
         this.closeLoginMenu = this.closeLoginMenu.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    
         this.state = {
             auth: true,
             anchorEl: null,
@@ -157,9 +158,8 @@ class MenuAppBar extends React.Component {
                     open={this.state.open}
                     onClose={this.closeLoginMenu}
                 >
-                    <LoginSignup closeDrawer={this.closeLoginMenu.bind(this)}/>
-
-
+                    <LoginSignup closeDrawer={this.closeLoginMenu.bind(this)} getCurrentState={this.props.getCurrentState} changeLoggedState={this.props.changeLoggedState}/>
+                  
                    
                 </Drawer>
             </div>

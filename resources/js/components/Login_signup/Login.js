@@ -7,16 +7,28 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from '../store/store';
 import showResults from './showResults';
 import LogInForm from './Forms/form_login';
-
+import Test from './Forms/Test';
 
 class Login extends Component {
-    constructor() {
-        super();
-
+         constructor(props) {
+            super(props);
+            console.log('Called from Login.js:  ', this.props.getCurrentState());
 
     }
 
+render()  {
+    return (
 
+        <Test getCurrentState = {this.props.getCurrentState} />
+
+    )
+
+
+}
+
+
+
+/*
     render() {
         return (
             < Provider store={store} >
@@ -31,6 +43,7 @@ class Login extends Component {
 
         )
     }
+*/
 }
 
 

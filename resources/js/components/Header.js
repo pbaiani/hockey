@@ -1,26 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ProjMenu from './ProjMenu'
+import Menus from './Menus'
 
 
 // The Header creates links that can be used to navigate
 // between routes.
-const Header = () => (
-    <header>
-        <ProjMenu />
-           <nav>
+
+
+
+const Header = props => {
+    console.log('Header:  ', props.getCurrentState());
+    return(
+         <header> 
+            <Menus getCurrentState={props.getCurrentState} changeLoggedState={props.changeLoggedState}/>
+          <nav style={{display:'none'}}>
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/roster'>Roster</Link></li>
                 <li><Link to='/schedule'>Schedule</Link></li>
             </ul>
-       
-       
-       
-        </nav>
-
-
+       </nav>
     </header>
-)
+    )}
 
 export default Header

@@ -1,17 +1,42 @@
 
 import { SubmissionError } from 'redux-form';
+import Cookies from 'universal-cookie';
+const cookie = new Cookies();
 
-export default function submit({ firstName, lastName, email, password }) {
+
+
+
+const submit = (values, dispatch, props) => {
+//console.log('Dump of props: ', props);
+//console.log('state from submit:  ', props.getCurrentState());
+ props.changeLoggedState('fdfad',true);
+ 
+
+    const { firstName, lastName, email, password} = values;
+
+    
+
+//export default function submit({ firstName, lastName, email, password, getCurrentState}) {
 
     return new Promise((resolve, reject) => {
+        console.log ('From actual submit', firstName);
         axios.post('api/users', { firstName: firstName, lastName: lastName, email: email, password: password })
             .then(response => {
-                console.log('response is: ', response, 'response.data is: ', response.data, 'response.code is: ', response.code);
-                if (response.data.success) {
-                    console.log('registerUser response.data.success is true')
-                    cookie.save('token', response.data.token, { path: '/' });
-                    store.dispatch({ type: AUTH_USER });
-                    browserHistory.push('/');
+               //console.log('response is: ', response, 'response.data is: ', response.data, 'response.code is: ', response.status);
+
+                console.log('response data is:', response.data.data);
+
+                if (response.data.success==true) {
+                    console.log('registerUser response.data.success is true');
+
+                    console.log('user data token is:  ', response.data.data.auth_token);
+                    cookie.set('token', response.data.data.auth_token, { path: '/' });
+                   
+                                 
+                    //  store.dispatch({ type: AUTH_USER });
+                    // browserHistory.push('/');
+
+
                     resolve();
                 } else {
                     if (response.data.emailExists && response.data.emailExists == 1) { //duplicate email 
@@ -32,3 +57,5 @@ export default function submit({ firstName, lastName, email, password }) {
             });
     })
 } 
+
+export default submit;
