@@ -30,16 +30,35 @@ class Application extends Component {
     getCurrentState(value) {
         //console.log('logged in?' , this.state.isLoggedIn);
         return this.state.isLoggedIn;
-
     }
 
+    setUser(event,value)  {
+        this.setState({ user: value }, () => {
+            /* At this point this.state.user contains:
+            firstName
+            lastName
+            id
+            email
+            auth_token
+            */
+            console.log('first name:  ', this.state.user);  // works!
+       }) 
+    }
 
+    getUser() {
+        return this.state.user;   
+    }
 
 
     render() {
         return(
         <div id="Application">
-                <Header changeLoggedState={this.changeLoggedState.bind(this)} getCurrentState={this.getCurrentState.bind(this)} />
+                <Header
+                    getUser = {this.getUser.bind(this)}
+                    setUser={this.setUser.bind(this)} 
+                    changeLoggedState={this.changeLoggedState.bind(this)} 
+                    getCurrentState={this.getCurrentState.bind(this)}
+                />
                 <Body changeLoggedState={this.changeLoggedState.bind(this)} />
         </div>
         )

@@ -16,26 +16,18 @@ class Login extends Component {
 
     }
 
-render()  {
-    return (
-
-        <Test getCurrentState = {this.props.getCurrentState} />
-
-    )
-
-
-}
-
-
-
-/*
     render() {
         return (
-            < Provider store={store} >
+            <Provider store={store} >
                 <MuiThemeProvider muiTheme={getMuiTheme()}>
-                    <div style={{ padding: 0 }}>
+                     <div style={{ padding: 0 }}>
                         <h3>Login</h3>
-                        <LogInForm onSubmit={showResults} />
+                        <LogInForm 
+                            onSubmit={showResults} 
+                            getCurrentState={this.props.getCurrentState} 
+                            changeLoggedState={this.props.changeLoggedState}
+                            setUser={this.props.setUser}
+                        />
                         <Values form="Login" />
                     </div>
                 </MuiThemeProvider>
@@ -43,7 +35,6 @@ render()  {
 
         )
     }
-*/
 }
 
 

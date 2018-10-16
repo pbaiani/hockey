@@ -12,7 +12,12 @@ const Header = props => {
     console.log('Header:  ', props.getCurrentState());
     return(
          <header> 
-            <Menus getCurrentState={props.getCurrentState} changeLoggedState={props.changeLoggedState}/>
+            <Menus 
+                setUser={props.setUser}
+                getCurrentState={props.getCurrentState}
+                changeLoggedState={props.changeLoggedState}
+                getUser = {props.getUser}
+            />
           <nav style={{display:'none'}}>
             <ul>
                 <li><Link to='/'>Home</Link></li>

@@ -18,6 +18,7 @@ Route::get('login', function () {
 
 
 Route::post('users','UsersController@store');
+Route::post('login','UsersController@login');
 
 Route::get('checkEmail', 'UsersController@checkemail');
 

@@ -34,6 +34,50 @@ class UsersController extends Controller
     }
 
 
+public function login(Request $request)  {
+    $this->validate($request, [
+    'email' => 'required',
+    'password' => 'required',
+     ]);
+
+
+   
+    // try to check if user exists
+    $user = \App\Users::where('email', $request->email)->get()->first();
+
+ 
+    if (!$user) {
+        return response('{"noUser":1}');
+        exit;
+    }
+
+    elseif(!\Hash::check($request->password, $user->password)) {
+
+            // auth on password fails
+            return response('{"passwordAuthFailure":1}');
+            exit;
+    }
+    
+    else  {
+        $token = self::getToken($request->email, $request->password); // generate user token
+        if (!is_string($token))  {
+            return response()->json(['success'=>false,'data'=>'Token generation failed'], 201);
+        }
+        $user->auth_token = $token; // update user token
+
+            // check hashed password is still valid
+        if (\Hash::needsRehash($user->password)) {
+            $hash = \Hash::make($request->password);
+            $user->password = $hash;
+        }
+
+        $user->save();
+        $response = ['success'=>true, 'data'=>['firstName'=>$user->firstName, 'lastName'=>$user->lastName,'id'=>$user->id,'email'=>$request->email,'auth_token'=>$token]];  
+    }
+
+return response()->json($response, 201);
+}
+
  
 public function store(Request $request) {
     $this->validate($request, [

@@ -38,16 +38,10 @@ const LoginForm = props => {
 
 <div>
         <form name="login" onSubmit={handleSubmit(submit)}>
-              
-        
-         
             <div>
                 <Field name="email" component={renderTextField} label="Email" />
-
            </div>
-           
-              
-            <div>
+           <div>
                <Field type="password"  name="password" component={renderTextField} label="Password" />
             </div>
           
@@ -71,11 +65,6 @@ const LoginForm = props => {
 
 
 };
-
-const mapDispatchToProps = dispatch => ({
-    onSubmit: values =>
-        alert('hi'),
-});
 
 
 

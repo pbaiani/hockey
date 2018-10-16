@@ -132,11 +132,20 @@ class LoginSignup extends Component {
 
                 {value === 0 &&
                     <TabContainer>
-                    <Login changeLoggedState={this.props.changeLoggedState} getCurrentState={this.props.getCurrentState} />
+                    <Login 
+                        changeLoggedState={this.props.changeLoggedState} 
+                        getCurrentState={this.props.getCurrentState}
+                        setUser={this.props.setUser}
+                    />
                     </TabContainer>}
                 {value === 1 &&
                     <TabContainer>
-                    <SignUp changeLoggedState={this.props.changeLoggedState} getCurrentState={this.props.getCurrentState} />
+                    <SignUp
+                        changeLoggedState={this.props.changeLoggedState}
+                        getCurrentState={this.props.getCurrentState}
+                        setUser={this.props.setUser}
+
+                    />
                     </TabContainer>}
 
             </div>

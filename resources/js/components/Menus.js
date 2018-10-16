@@ -18,6 +18,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import LoginSignup from './Login_signup/LoginSignup';
 
 import '../../sass/main.scss';
+import { yellow300, red500, red700, green500 } from 'material-ui/styles/colors';
+import { red400 } from 'material-ui/styles/colors';
 
 
 
@@ -47,6 +49,7 @@ class MenuAppBar extends React.Component {
         console.log('Called from menus:  ', this.props.getCurrentState());
 
         this.openLoginMenu = this.openLoginMenu.bind(this);
+        this.openLoggedInMenu = this.openLoggedInMenu.bind(this);
         this.toggleDrawer = this.toggleDrawer.bind(this);
         this.closeLoginMenu = this.closeLoginMenu.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -73,11 +76,19 @@ class MenuAppBar extends React.Component {
     };
 
     openLoginMenu(event) {
-
+        
         this.setState({
-            open: true,
+         open: true,
         });
     };
+
+    openLoggedInMenu(event) {
+      
+        this.setState({ 
+            anchorEl: event.currentTarget,
+           });
+    };
+
 
     closeLoginMenu(event) {
         this.setState({
@@ -94,6 +105,33 @@ class MenuAppBar extends React.Component {
         const { classes } = this.props;
         const { auth, anchorEl } = this.state;
         const open = Boolean(anchorEl);
+
+
+
+        // conditional for login drawer
+        let loginSignupDrawer;
+        if (this.props.getCurrentState() == false) {
+            loginSignupDrawer = <Drawer
+                id="logindrawer"
+                anchor="right"
+                open={this.state.open}
+                onClose={this.closeLoginMenu}
+                >
+                <LoginSignup
+                    closeDrawer={this.closeLoginMenu.bind(this)}
+                    getCurrentState={this.props.getCurrentState}
+                    changeLoggedState={this.props.changeLoggedState}
+                    setUser={this.props.setUser}
+               />
+           </Drawer>
+        }
+        else {
+
+            loginSignupDrawer = null;
+
+        }
+        // End conditional for login drawer
+
 
         return (
             <div>
@@ -115,26 +153,35 @@ class MenuAppBar extends React.Component {
                             <Typography variant="title" color="inherit" className={classes.grow}>
                                 ICE-X
                            </Typography>
-                            {auth && (
+                           
                                 <div>
-                                    <Tooltip title="Log In">
+                                    <Tooltip
+                                    {...console.log("is a cunt here" , this.props.getUser().firstName)}
+                                    title={this.props.getCurrentState() == true && this.props.getUser().firstName ? this.props.getUser().firstName : 'Login'}
+                                    >
                                         <IconButton
                                             aria-owns={open ? 'menu-appbar' : null}
                                             aria-haspopup="true"
-                                            onClick={this.openLoginMenu}
+                                            onClick={this.props.getCurrentState() == true && this.props.getUser().firstName ?  this.openLoggedInMenu : this.openLoginMenu}
                                             color="inherit"
-                                        > <AccountCircle />
-
+                                        > 
+                                        
+                                        {this.props.getCurrentState() == true && this.props.getUser().firstName ? "Hello " + this.props.getUser().firstName: ''}
+                                        <AccountCircle 
+                                            style={{ color: this.props.getCurrentState() == true && this.props.getUser().firstName ? '#FFFFFF' : "#b3ccff" }}
+                                        />
+                                      
+                                        
                                         </IconButton>
+
                                     </Tooltip>
-
-
                                     <Menu
                                         id="menu-appbar"
+                                        open={this.state.open}
                                         anchorEl={anchorEl}
                                         anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'left',
+                                        vertical: 'top',
+                                        horizontal: 'left',
                                         }}
                                         transformOrigin={{
                                             vertical: 'top',
@@ -143,25 +190,20 @@ class MenuAppBar extends React.Component {
                                         open={open}
                                         onClose={this.handleClose}
                                     >
-
-                                        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                                        <MenuItem onClick={this.handleClose}>My Profile</MenuItem>
+                                        <MenuItem onClick={this.handleClose}>Log Out</MenuItem>
                                     </Menu>
                                 </div>
-                            )}
+                            )
                         </Toolbar>
                     </AppBar>
                 </div>
-                <Drawer
-                    id="logindrawer"
-                    anchor="right"
-                    open={this.state.open}
-                    onClose={this.closeLoginMenu}
-                >
-                    <LoginSignup closeDrawer={this.closeLoginMenu.bind(this)} getCurrentState={this.props.getCurrentState} changeLoggedState={this.props.changeLoggedState}/>
-                  
-                   
-                </Drawer>
+               {loginSignupDrawer}
+   
+ 
+ 
+                 }
+ 
             </div>
         );
     }
