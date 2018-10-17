@@ -10,18 +10,38 @@ class Application extends Component {
         this.state = {
             value: 0,
             isLoggedIn: false,
-            user: {}
-        };
-    
-    
+            user: {},
+            leftLoggedInMenuVisibleValue: false,
+          };
+      
         // boilerplate function assignments
      //   this.handleChange = this.handleChange.bind(this);
        this.changeLoggedState = this.changeLoggedState.bind(this);
         this.getCurrentState = this.getCurrentState.bind(this);
-    
+        this.toggleLeftLoggedInMenuVisible = this.toggleLeftLoggedInMenuVisible.bind(this);
        
     }// end constructor
  
+    // toggles the 'state' of leftLoggedInMenuVisibleValue to true or false
+    toggleLeftLoggedInMenuVisible()  {
+        if (this.state.leftLoggedInMenuVisibleValue == false)  {
+
+            this.setState({leftLoggedInMenuVisibleValue:true});
+            }
+        else
+            {
+            this.setState({ leftLoggedInMenuVisibleValue: false });
+
+            }
+    }
+
+
+    // gets the value of leftLoggedInMenuVisibleValue
+    getLeftLoggedInMenuVisibleValue()  {
+        return this.state.leftLoggedInMenuVisibleValue;
+    }
+
+
     changeLoggedState(event, value) {
         this.setState({ isLoggedIn: value }, () => {
             console.log('state of isLoggedIn:  ', this.getCurrentState());
@@ -58,8 +78,14 @@ class Application extends Component {
                     setUser={this.setUser.bind(this)} 
                     changeLoggedState={this.changeLoggedState.bind(this)} 
                     getCurrentState={this.getCurrentState.bind(this)}
-                />
-                <Body changeLoggedState={this.changeLoggedState.bind(this)} />
+                    toggleLeftLoggedInMenuVisible={this.toggleLeftLoggedInMenuVisible.bind(this)}
+            />
+                <Body
+                 getUser={this.getUser.bind(this)} 
+                 getLeftLoggedInMenuVisibleValue={this.getLeftLoggedInMenuVisibleValue.bind(this)}
+                 
+                 
+                 />
         </div>
         )
     }

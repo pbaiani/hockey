@@ -17,6 +17,7 @@ const Header = props => {
                 getCurrentState={props.getCurrentState}
                 changeLoggedState={props.changeLoggedState}
                 getUser = {props.getUser}
+                toggleLeftLoggedInMenuVisible={props.toggleLeftLoggedInMenuVisible}
             />
           <nav style={{display:'none'}}>
             <ul>

@@ -1,5 +1,41 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+import LeftLoggedInNav from './leftLoggedInNav';
+
+
+
+const Body = (props) => {
+
+    return (
+        <main>
+            {//props.getUser().id &&
+                <LeftLoggedInNav 
+                    getLeftLoggedInMenuVisibleValue={props.getLeftLoggedInMenuVisibleValue}
+                            
+                
+                /> 
+           
+        }
+
+
+
+
+
+        </main>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
 import Home from './Home'
 import Roster from './Roster'
 import Schedule from './Schedule'
@@ -18,6 +54,6 @@ const Main = () => (
         </Switch>
     </main>
 )
+*/
 
-
-export default Main
+export default Body

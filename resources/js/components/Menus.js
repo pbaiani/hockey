@@ -54,6 +54,8 @@ class MenuAppBar extends React.Component {
         this.closeLoginMenu = this.closeLoginMenu.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.toggleLeftLoggedInMenu = this.toggleLeftLoggedInMenu.bind(this);
+
         this.state = {
             auth: true,
             anchorEl: null,
@@ -69,6 +71,12 @@ class MenuAppBar extends React.Component {
         });
     };
 
+    toggleLeftLoggedInMenu()
+        {
+            //states of everything we need to do this
+            // are in very different places
+        this.props.toggleLeftLoggedInMenuVisible();
+        }
 
     handleChange(event) {
 
@@ -142,12 +150,17 @@ class MenuAppBar extends React.Component {
                                 <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
                             }
                             label={auth ? 'Logout' : 'Login'}
-                        />
+                        />hello
                     </FormGroup>
                     <AppBar position="static" className="{this.appBarTheme.pallette}">
                         <Toolbar>
 
                             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                               <MenuIcon
+                                    onClick={this.toggleLeftLoggedInMenu}
+                                                          
+                               
+                               />
                             </IconButton>
 
                             <Typography variant="title" color="inherit" className={classes.grow}>
@@ -165,13 +178,18 @@ class MenuAppBar extends React.Component {
                                             onClick={this.props.getCurrentState() == true && this.props.getUser().firstName ?  this.openLoggedInMenu : this.openLoginMenu}
                                             color="inherit"
                                         > 
-                                        
+                                       <span
+                                       style={{
+                                           fontSize: 14,
+                                           paddingRight:'5px' 
+                                            }}
+                                       
+                                       > 
                                         {this.props.getCurrentState() == true && this.props.getUser().firstName ? "Hello " + this.props.getUser().firstName: ''}
+                                        </span>
                                         <AccountCircle 
                                             style={{ color: this.props.getCurrentState() == true && this.props.getUser().firstName ? '#FFFFFF' : "#b3ccff" }}
                                         />
-                                      
-                                        
                                         </IconButton>
 
                                     </Tooltip>
@@ -194,17 +212,12 @@ class MenuAppBar extends React.Component {
                                         <MenuItem onClick={this.handleClose}>Log Out</MenuItem>
                                     </Menu>
                                 </div>
-                            )
+                            
                         </Toolbar>
                     </AppBar>
                 </div>
                {loginSignupDrawer}
-   
- 
- 
-                 }
- 
-            </div>
+               </div>
         );
     }
 }
