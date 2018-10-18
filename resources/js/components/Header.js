@@ -19,7 +19,7 @@ const Header = props => {
                 getUser = {props.getUser}
                 toggleLeftLoggedInMenuVisible={props.toggleLeftLoggedInMenuVisible}
             />
-          <nav style={{display:'none'}}>
+          <nav>
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='/roster'>Roster</Link></li>

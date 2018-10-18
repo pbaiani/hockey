@@ -1,23 +1,84 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LeftLoggedInNav from './leftLoggedInNav';
+import Content from './Content';
+
+
+
+class Body extends Component {
+    constructor(props) {
+        super(props);
+       this.closeDrawer = this.closeDrawer.bind(this);
+    }
+
+     closeDrawer() {
+         console.log('From body close drawer', this.props.getLeftLoggedInMenuVisibleValue());
+
+          if (this.props.getLeftLoggedInMenuVisibleValue() == true) {
+            this.props.toggleLeftLoggedInMenuVisible();
+        }
+
+    }
+
+    render() {
+         return (
+            <main>
+                {//props.getUser().id &&
+                    <LeftLoggedInNav
+                        getLeftLoggedInMenuVisibleValue={this.props.getLeftLoggedInMenuVisibleValue}
+                    />
+                }
+            <div
+                style={{
+                    backgroundColor: "red"
+                }}
+                tabIndex={0}
+                role="button"
+                onClick={this.closeDrawer}
+               onKeyDown={this.closeDrawer}
+            >
+                    <Content
+                        getLeftLoggedInMenuVisibleValue={this.props.getLeftLoggedInMenuVisibleValue}
+                        toggleLeftLoggedInMenuVisible={this.props.toggleLeftLoggedInMenuVisible}
+                    />
+              
+                </div>
+
+
+         </main>       
+        );
+    }
+}
+
+export default Body;
+
+
+
+
+
+/*
+
 
 
 
 const Body = (props) => {
+    
+//console.log('from body', props.getLeftLoggedInMenuVisibleValue());
 
     return (
         <main>
             {//props.getUser().id &&
-                <LeftLoggedInNav 
+             <LeftLoggedInNav 
                     getLeftLoggedInMenuVisibleValue={props.getLeftLoggedInMenuVisibleValue}
-                            
-                
-                /> 
-           
+            /> 
+          
         }
 
+            <Content
+               getLeftLoggedInMenuVisibleValue={props.getLeftLoggedInMenuVisibleValue}
+               toggleLeftLoggedInMenuVisible={props.toggleLeftLoggedInMenuVisible}
 
+            />
 
 
 
@@ -25,17 +86,13 @@ const Body = (props) => {
     )
 }
 
+export default Body;
 
 
 
 
 
 
-
-
-
-
-/*
 import Home from './Home'
 import Roster from './Roster'
 import Schedule from './Schedule'
@@ -56,4 +113,3 @@ const Main = () => (
 )
 */
 
-export default Body

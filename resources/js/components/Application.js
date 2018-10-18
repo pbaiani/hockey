@@ -4,6 +4,7 @@ import Header from './Header'
 import Body from './Body'
 import { render } from 'react-dom'
 
+
 class Application extends Component {
     constructor(props) {
         super(props);
@@ -83,7 +84,7 @@ class Application extends Component {
                 <Body
                  getUser={this.getUser.bind(this)} 
                  getLeftLoggedInMenuVisibleValue={this.getLeftLoggedInMenuVisibleValue.bind(this)}
-                 
+                 toggleLeftLoggedInMenuVisible={this.toggleLeftLoggedInMenuVisible.bind(this)}
                  
                  />
         </div>

@@ -36,7 +36,9 @@ class LeftLoggedInNav extends Component {
         super(props);
         this.state = { open: false };
         this.handleToggle = this.handleToggle.bind(this);
+  
     }
+
     handleToggle()  {
    
      this.setState({ open: ! this.state.open });
@@ -56,13 +58,17 @@ class LeftLoggedInNav extends Component {
                 <div>
                     <Drawer
                         open={this.state.open}
-                        width={200}
+                         width={200}
                         containerStyle={styles.navBar}>
-                        <List>{mailFolderListItems}</List>
+                        <List>
+                        
+                        {mailFolderListItems}
+                        
+                        </List>
                         <Divider />
                         <List>{otherMailFolderListItems}</List>
                     </Drawer>
-                </div>
+               </div>
             </MuiThemeProvider>
         );
     }
