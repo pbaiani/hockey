@@ -34,12 +34,24 @@ class UsersController extends Controller
     }
 
 
+    public function logInWithCookie(Request $request)   {
+      $user = \App\Users::where('auth_token', $_COOKIE['token'])->get()->first();
+
+
+       $response = [
+            'success'=>true,
+            'data'=>[$user]
+        ];  
+
+     return response()->json($response, 201);
+    }
+
+
 public function login(Request $request)  {
     $this->validate($request, [
     'email' => 'required',
     'password' => 'required',
      ]);
-
 
    
     // try to check if user exists

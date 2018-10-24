@@ -13,9 +13,8 @@ import { Link } from 'react-router-dom'
 
 export const mailFolderListItems = (
     <div>
-        
-        <Link to='/roster'>
-        <ListItem button>
+       <Link to='/league'>
+        <ListItem button >
             <ListItemIcon>
                 <People />
             </ListItemIcon>

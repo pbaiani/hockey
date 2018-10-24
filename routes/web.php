@@ -16,6 +16,7 @@ Route::view('/', 'welcome');
 Route::view('/roster', 'welcome');
 Route::view('/roster/{id}', 'welcome');
 Route::view('/schedule', 'welcome');
+Route::view('/league', 'welcome');
 
 /*
 

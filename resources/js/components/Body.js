@@ -26,6 +26,8 @@ class Body extends Component {
                 {//props.getUser().id &&
                     <LeftLoggedInNav
                         getLeftLoggedInMenuVisibleValue={this.props.getLeftLoggedInMenuVisibleValue}
+                        toggleLeftLoggedInMenuVisible={this.props.toggleLeftLoggedInMenuVisible}
+                        getUser={this.props.getUser}
                     />
                 }
             <div
@@ -40,6 +42,7 @@ class Body extends Component {
                     <Content
                         getLeftLoggedInMenuVisibleValue={this.props.getLeftLoggedInMenuVisibleValue}
                         toggleLeftLoggedInMenuVisible={this.props.toggleLeftLoggedInMenuVisible}
+                        getUser={this.props.getUser}
                     />
               
                 </div>

@@ -1,49 +1,34 @@
 import React, { Component } from 'react';
-import Home from './Home';
+import Home from './content/Home';
+import League from './content/league';
+
 import Roster from './Roster';
 import Schedule from './Schedule';
+
 import { Switch, Route } from 'react-router-dom'
+
+
 class Content extends Component {
-    constructor(props) {
-        super(props);
-      
-    
-     
-    }
-
-
-
     render() {
-   
-
         return (
-          <div>bla bla bla</div>
-        );
+        
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route
+                    exact path='/league'
+                    render={(props) => <League {...props} getUser={this.props.getUser} />}
+                />
+                <Route exact path='/roster' component={Roster} />
+                <Route path='/schedule' component={Schedule} />
+            </Switch>
+      
+        
+            );
     }
 }
 
-//export default Content;
+export default Content;
 
-
-
-
-
-
-const Main = () => (
-
-<main>
-       
-            <Switch>
-                <Route exact path='/' component={Home} />
-                 <Route path='/weirdo_check' component={Roster} />
-                <Route path='/roster' component={Roster} />
-               <Route path='/schedule' component={Schedule} />
-          </Switch>
-
-</main>
-)
-
-export default Main;
 
 
 

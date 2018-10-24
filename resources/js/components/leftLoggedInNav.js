@@ -41,10 +41,9 @@ class LeftLoggedInNav extends Component {
 
     handleToggle()  {
    
-     this.setState({ open: ! this.state.open });
+        this.props.toggleLeftLoggedInMenuVisible();
     }
     render() {
-
     if(this.props.getLeftLoggedInMenuVisibleValue() == true)   {
           this.state.open = true;
         }
@@ -55,7 +54,14 @@ class LeftLoggedInNav extends Component {
 
         return (
             <MuiThemeProvider>
-                <div>
+                <div
+                    role="button"
+                    onClick={this.handleToggle}
+                    onKeyDown={this.handleToggle}
+
+                 
+                
+                >
                     <Drawer
                         open={this.state.open}
                          width={200}

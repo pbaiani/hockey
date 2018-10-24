@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import Header from './Header'
 import Body from './Body'
+import Cookies from 'universal-cookie';
+const cookie = new Cookies();
 import { render } from 'react-dom'
 
 
@@ -62,9 +64,30 @@ class Application extends Component {
             email
             auth_token
             */
-            console.log('first name:  ', this.state.user);  // works!
+            console.log('first name:  ', this.state.user.firstName);  // works!
        }) 
     }
+
+
+    componentDidMount() {
+        const self = this;
+        if(cookie.get('token'))
+            {
+             // log in with cookie
+            axios.get('api/persistentLogIn', {
+            }).then(response => {
+
+                console.log('login data from autolog:', response.data.data);
+                this.setUser(event, response.data.data[0]);
+                this.changeLoggedState(event, true);
+
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    }
+
+
 
     getUser() {
         return this.state.user;   
@@ -82,11 +105,11 @@ class Application extends Component {
                     toggleLeftLoggedInMenuVisible={this.toggleLeftLoggedInMenuVisible.bind(this)}
             />
                 <Body
-                 getUser={this.getUser.bind(this)} 
-                 getLeftLoggedInMenuVisibleValue={this.getLeftLoggedInMenuVisibleValue.bind(this)}
-                 toggleLeftLoggedInMenuVisible={this.toggleLeftLoggedInMenuVisible.bind(this)}
-                 
-                 />
+                    getUser={this.getUser.bind(this)} 
+                    getLeftLoggedInMenuVisibleValue={this.getLeftLoggedInMenuVisibleValue.bind(this)}
+                    toggleLeftLoggedInMenuVisible={this.toggleLeftLoggedInMenuVisible.bind(this)}
+                    getUser={this.getUser.bind(this)}
+                />
         </div>
         )
     }
