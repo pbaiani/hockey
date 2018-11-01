@@ -6,7 +6,7 @@ const  getLeagueInfo = (league) => {
         }).then(response => {
             if(response.data.success)  {
                 console.log('in get league info: ' ,response.data);
-                league.setState({ data: response.data.data[0]});
+                league.setState({ data: response.data.data[0][0]});
             }
         }).catch((error) => {
     });

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LeftLoggedInNav from './leftLoggedInNav';
+
 import Content from './Content';
 
 
@@ -32,7 +33,7 @@ class Body extends Component {
                 }
             <div
                 style={{
-                    backgroundColor: "red"
+              
                 }}
                 tabIndex={0}
                 role="button"

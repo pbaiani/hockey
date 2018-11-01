@@ -13,15 +13,19 @@ import { Link } from 'react-router-dom'
 
 export const mailFolderListItems = (
     <div>
+   <ListItem>
+            <ListItemText secondary='Commissioner' />
+
+   </ListItem>
+      
        <Link to='/league'>
         <ListItem button >
             <ListItemIcon>
                 <People />
             </ListItemIcon>
-             <ListItemText primary="Leagues" />
+             <ListItemText primary="Edit League" />
         </ListItem>
         </Link>
-
         <Link to='/weirdo_check'>
         <ListItem button>
             <ListItemIcon>
@@ -39,12 +43,16 @@ export const mailFolderListItems = (
             </ListItemIcon>
             <ListItemText primary="Send mail" />
         </ListItem>
+
+
+        <Link to='/test'>
         <ListItem button>
             <ListItemIcon>
                 <DraftsIcon />
             </ListItemIcon>
-            <ListItemText primary="Drafts" />
+            <ListItemText primary="asych form test" />
         </ListItem>
+        </Link>
     </div>
 );
 
