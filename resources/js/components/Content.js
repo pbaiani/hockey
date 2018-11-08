@@ -9,7 +9,7 @@ import store from "./store/store";
 
 import { Switch, Route } from "react-router-dom";
 import League from "./content/League/League";
-import asychTest from "./tests/AsychTest";
+import User from "./tests/User";
 
 
 
@@ -39,7 +39,7 @@ class Content extends Component {
                         )}
                     />
                     <Route path="/league/:number" component={League} />
-                    <Route path="/test" component={asychTest} />
+                    <Route path="/test" component={User} />
 
 
                 </Switch>

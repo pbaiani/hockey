@@ -22,6 +22,9 @@ Route::post('login','UsersController@login');
 Route::get('getLeagues','LeagueController@getLeagues');
 Route::get('persistentLogIn', 'UsersController@logInWithCookie');
 
+Route::post('uploadLeagueImage', 'UploadController@UploadLeagueImage');
+
+
 
 Route::get('checkEmail', 'UsersController@checkemail');
 
